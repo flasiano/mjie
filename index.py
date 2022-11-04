@@ -1,6 +1,6 @@
-mport firebase_admin
+import firebase_admin
 from firebase_admin import credentials, firestore
-cred = credentials.Certificate("serviceAccountKey.json")
+cred = credentials.Certificate("severaccountkey.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -44,10 +44,10 @@ def account():
         return result
     else:
         return render_template("account.html") 
-        @app.route("/read")
+@app.route("/read")
 def read():
     Result = ""     
-    collection_ref = db.collection("靜宜資管")    
+    collection_ref = db.collection("PU")    
     docs = collection_ref.order_by("mail", direction=firestore.Query.DESCENDING).get()    
     for doc in docs:         
         Result += "文件內容：{}".format(doc.to_dict()) + "<br>"    
